@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   s.dependency 'FMDB'
 
   s.source_files = 'DebugDatabase/**/*.{h,m}', 'DebugDatabase/*.{h,m}'
-  s.public_header_files = 'YYDebugDatabase.h'
+  s.public_header_files = 'DebugDatabase/DebugDatabaseManager.h'
   s.resource = "DebugDatabase/Web.bundle"
 
   s.requires_arc = true
