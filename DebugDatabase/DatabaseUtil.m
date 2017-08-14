@@ -71,7 +71,7 @@
     NSMutableArray *tables = @[].mutableCopy;
     
     while ([rs next]) {
-        [tables addObject:[rs stringForColumn:@"tbl_name"]];
+        [tables safe_addObject:[rs stringForColumn:@"tbl_name"]];
     }
     
     return tables;
@@ -83,7 +83,7 @@
     NSMutableArray *infos = @[].mutableCopy;
     
     while ([rs next]) {
-        [infos addObject:rs.resultDictionary?:[NSNull null]];
+        [infos safe_addObject:rs.resultDictionary?:[NSNull null]];
     }
     return infos;
 }
@@ -91,8 +91,8 @@
 - (NSDictionary*)rowsInTable:(NSString*)tableName {
     
     NSMutableDictionary *tableData = [NSMutableDictionary dictionary];
-    [tableData setObject:@(1) forKey:@"isSelectQuery"];
-    [tableData setObject:@(1) forKey:@"isSuccessful"];
+    [tableData safe_setObject:@(1) forKey:@"isSelectQuery"];
+    [tableData safe_setObject:@(1) forKey:@"isSuccessful"];
     
     //标题
     FMResultSet *infors = [self.fmdb getTableSchema:tableName];
@@ -101,15 +101,15 @@
     
     while ([infors next]) {
         NSMutableDictionary *info = [NSMutableDictionary dictionary];
-        [info setObject:@([infors boolForColumn:@"pk"]) forKey:@"isPrimary"];
-        [info setObject:[infors stringForColumn:@"name"]?:@"" forKey:@"title"];
-        [info setObject:[infors stringForColumn:@"type"] forKey:@"dataType"];
-        [tableInfoResult addObject:info];
+        [info safe_setObject:@([infors boolForColumn:@"pk"]) forKey:@"isPrimary"];
+        [info safe_setObject:[infors stringForColumn:@"name"]?:@"" forKey:@"title"];
+        [info safe_setObject:[infors stringForColumn:@"type"] forKey:@"dataType"];
+        [tableInfoResult safe_addObject:info];
     }
-    [tableData setObject:tableInfoResult forKey:@"tableInfos"];
+    [tableData safe_setObject:tableInfoResult forKey:@"tableInfos"];
     
     BOOL isEditable = tableName != nil && [tableData objectForKey:@"tableInfos"] != nil;
-    [tableData setObject:@(isEditable) forKey:@"isEditable"];
+    [tableData safe_setObject:@(isEditable) forKey:@"isEditable"];
     
     
     //数据
@@ -126,32 +126,32 @@
             NSString *type = [[tableInfoResult objectAtIndex:i] objectForKey:@"dataType"];
             
             if ([[type lowercaseString] isEqualToString:@"integer"]) {
-                [columnData setObject:@"integer" forKey:@"dataType"];
-                [columnData setObject:@([rs intForColumn:columName]) forKey:@"value"];
+                [columnData safe_setObject:@"integer" forKey:@"dataType"];
+                [columnData safe_setObject:@([rs intForColumn:columName]) forKey:@"value"];
             }else if ([[type lowercaseString] isEqualToString:@"real"]) {
-                [columnData setObject:@"float" forKey:@"dataType"];
-                [columnData setObject:@([rs doubleForColumn:columName]) forKey:@"value"];
+                [columnData safe_setObject:@"float" forKey:@"dataType"];
+                [columnData safe_setObject:@([rs doubleForColumn:columName]) forKey:@"value"];
             }else if ([[type lowercaseString] isEqualToString:@"text"]) {
-                [columnData setObject:@"text" forKey:@"dataType"];
-                [columnData setObject:[rs stringForColumn:columName]?:@"" forKey:@"value"];
+                [columnData safe_setObject:@"text" forKey:@"dataType"];
+                [columnData safe_setObject:[rs stringForColumn:columName]?:@"" forKey:@"value"];
             }else if ([[type lowercaseString] isEqualToString:@"blob"]) {
-                [columnData setObject:@"blob" forKey:@"dataType"];
-                [columnData setObject:@"blob" forKey:@"value"];
+                [columnData safe_setObject:@"blob" forKey:@"dataType"];
+                [columnData safe_setObject:@"blob" forKey:@"value"];
             }else if ([[type lowercaseString] isEqualToString:@"null"]) {
-                [columnData setObject:@"null" forKey:@"dataType"];
-                [columnData setObject:[NSNull null] forKey:@"value"];
+                [columnData safe_setObject:@"null" forKey:@"dataType"];
+                [columnData safe_setObject:[NSNull null] forKey:@"value"];
             }else {
-                [columnData setObject:@"text" forKey:@"dataType"];
-                [columnData setObject:[rs stringForColumn:columName] forKey:@"value"];
+                [columnData safe_setObject:@"text" forKey:@"dataType"];
+                [columnData safe_setObject:[rs stringForColumn:columName] forKey:@"value"];
             }
             
-            [row addObject:columnData];
+            [row safe_addObject:columnData];
         }
         
-        [rows addObject:row];
+        [rows safe_addObject:row];
     }
     
-    [tableData setObject:rows forKey:@"rows"];
+    [tableData safe_setObject:rows forKey:@"rows"];
     return tableData;
 }
 
@@ -160,7 +160,7 @@
     NSMutableArray *fields = @[].mutableCopy;
     
     for (NSString *key in data.allKeys) {
-        [fields addObject:[NSString stringWithFormat:@"%@ = '%@'", key, [data objectForKey:key]]];
+        [fields safe_addObject:[NSString stringWithFormat:@"%@ = '%@'", key, [data objectForKey:key]]];
     }
     NSString *values = [fields componentsJoinedByString:@","];
     
@@ -170,7 +170,7 @@
         NSMutableArray *conArray = @[].mutableCopy;
         
         for (NSString *key in condition.allKeys) {
-            [conArray addObject:[NSString stringWithFormat:@"%@ = '%@'", key, [condition objectForKey:key]]];
+            [conArray safe_addObject:[NSString stringWithFormat:@"%@ = '%@'", key, [condition objectForKey:key]]];
         }
         
         where = [conArray componentsJoinedByString:@" AND "];
@@ -191,7 +191,7 @@
         NSMutableArray *conArray = @[].mutableCopy;
         
         for (NSString *key in condition.allKeys) {
-            [conArray addObject:[NSString stringWithFormat:@"%@ = '%@'", key, [condition objectForKey:key]]];
+            [conArray safe_addObject:[NSString stringWithFormat:@"%@ = '%@'", key, [condition objectForKey:key]]];
         }
         
         where = [conArray componentsJoinedByString:@" AND "];
@@ -207,8 +207,8 @@
     if ([operator isEqualToString:@"select"]) {
         
         NSMutableDictionary *tableData = [NSMutableDictionary dictionary];
-        [tableData setObject:@(1) forKey:@"isSelectQuery"];
-        [tableData setObject:@(1) forKey:@"isSuccessful"];
+        [tableData safe_setObject:@(1) forKey:@"isSelectQuery"];
+        [tableData safe_setObject:@(1) forKey:@"isSuccessful"];
         
         
         //数据
@@ -227,16 +227,16 @@
             NSString *columnName = [infors stringForColumn:@"name"];
             
             if ([rs.columnNameToIndexMap.allKeys containsObject:columnName]) {
-                [info setObject:@([infors boolForColumn:@"pk"]) forKey:@"isPrimary"];
-                [info setObject:[infors stringForColumn:@"name"]?:@"" forKey:@"title"];
-                [info setObject:[infors stringForColumn:@"type"] forKey:@"dataType"];
-                [tableInfoResult addObject:info];
+                [info safe_setObject:@([infors boolForColumn:@"pk"]) forKey:@"isPrimary"];
+                [info safe_setObject:[infors stringForColumn:@"name"]?:@"" forKey:@"title"];
+                [info safe_setObject:[infors stringForColumn:@"type"] forKey:@"dataType"];
+                [tableInfoResult safe_addObject:info];
             }
         }
-        [tableData setObject:tableInfoResult forKey:@"tableInfos"];
+        [tableData safe_setObject:tableInfoResult forKey:@"tableInfos"];
         
         BOOL isEditable = tableName != nil && [tableData objectForKey:@"tableInfos"] != nil;
-        [tableData setObject:@(isEditable) forKey:@"isEditable"];
+        [tableData safe_setObject:@(isEditable) forKey:@"isEditable"];
         
         while ([rs next]) {
             NSMutableArray *row = @[].mutableCopy;
@@ -247,32 +247,32 @@
                 NSString *type = [[tableInfoResult objectAtIndex:i] objectForKey:@"dataType"];
                 
                 if ([[type lowercaseString] isEqualToString:@"integer"]) {
-                    [columnData setObject:@"integer" forKey:@"dataType"];
-                    [columnData setObject:@([rs intForColumn:columName]) forKey:@"value"];
+                    [columnData safe_setObject:@"integer" forKey:@"dataType"];
+                    [columnData safe_setObject:@([rs intForColumn:columName]) forKey:@"value"];
                 }else if ([[type lowercaseString] isEqualToString:@"real"]) {
-                    [columnData setObject:@"float" forKey:@"dataType"];
-                    [columnData setObject:@([rs doubleForColumn:columName]) forKey:@"value"];
+                    [columnData safe_setObject:@"float" forKey:@"dataType"];
+                    [columnData safe_setObject:@([rs doubleForColumn:columName]) forKey:@"value"];
                 }else if ([[type lowercaseString] isEqualToString:@"text"]) {
-                    [columnData setObject:@"text" forKey:@"dataType"];
-                    [columnData setObject:[rs stringForColumn:columName]?:@"" forKey:@"value"];
+                    [columnData safe_setObject:@"text" forKey:@"dataType"];
+                    [columnData safe_setObject:[rs stringForColumn:columName]?:@"" forKey:@"value"];
                 }else if ([[type lowercaseString] isEqualToString:@"blob"]) {
-                    [columnData setObject:@"blob" forKey:@"dataType"];
-                    [columnData setObject:@"blob" forKey:@"value"];
+                    [columnData safe_setObject:@"blob" forKey:@"dataType"];
+                    [columnData safe_setObject:@"blob" forKey:@"value"];
                 }else if ([[type lowercaseString] isEqualToString:@"null"]) {
-                    [columnData setObject:@"null" forKey:@"dataType"];
-                    [columnData setObject:[NSNull null] forKey:@"value"];
+                    [columnData safe_setObject:@"null" forKey:@"dataType"];
+                    [columnData safe_setObject:[NSNull null] forKey:@"value"];
                 }else {
-                    [columnData setObject:@"text" forKey:@"dataType"];
-                    [columnData setObject:[rs stringForColumn:columName] forKey:@"value"];
+                    [columnData safe_setObject:@"text" forKey:@"dataType"];
+                    [columnData safe_setObject:[rs stringForColumn:columName] forKey:@"value"];
                 }
                 
-                [row addObject:columnData];
+                [row safe_addObject:columnData];
             }
             
-            [rows addObject:row];
+            [rows safe_addObject:row];
         }
         
-        [tableData setObject:rows forKey:@"rows"];
+        [tableData safe_setObject:rows forKey:@"rows"];
         return tableData;
         
     }else {
