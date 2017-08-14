@@ -15,15 +15,15 @@
 @end
 
 // NSDictionary
-id dicGetObject(NSDictionary * dic, id aKey, Class aClass);
+id yy_dicGetObject(NSDictionary * dic, id aKey, Class aClass);
 
-NSDictionary * dicGetDic(NSDictionary *dic, id aKey);
-NSArray * dicGetArray(NSDictionary *dic, id aKey);
-NSArray * dicGetArraySafe(NSDictionary *dic, id aKey);
+NSDictionary * yy_dicGetDicYY(NSDictionary *dic, id aKey);
+NSArray * yy_dicGetArrayYY(NSDictionary *dic, id aKey);
+NSArray * yy_dicGetArraySafe(NSDictionary *dic, id aKey);
 
-NSString * dicGetString(NSDictionary *dic, id aKey);
-NSString * dicGetStringSafe(NSDictionary *dic, id aKey);
+NSString * yy_dicGetString(NSDictionary *dic, id aKey);
+NSString * yy_dicGetStringSafe(NSDictionary *dic, id aKey);
 
-int   dicGetInt(NSDictionary *dic, id aKey, int nDefault);
-float dicGetFloat(NSDictionary *dic, id aKey, float fDefault);
-BOOL  dicGetBool(NSDictionary *dic, id aKey, BOOL bDefault);
+int   yy_dicGetInt(NSDictionary *dic, id aKey, int nDefault);
+float yy_dicGetFloat(NSDictionary *dic, id aKey, float fDefault);
+BOOL  yy_dicGetBool(NSDictionary *dic, id aKey, BOOL bDefault);

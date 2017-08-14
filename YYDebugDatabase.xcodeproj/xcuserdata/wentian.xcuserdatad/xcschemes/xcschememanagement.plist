@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>DebugDatabaseWeb.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>YYDebugDatabase.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +18,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>E84AE5EA1F3ADDE3003A9EB7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E8E069911F40944F00477064</key>
 		<dict>
 			<key>primary</key>
 			<true/>

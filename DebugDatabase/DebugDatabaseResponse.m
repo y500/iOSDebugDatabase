@@ -56,7 +56,11 @@
 
 - (instancetype)initWithFileName:(NSString *)fileName {
     NSString *contentType = [[self class] detectMimeType:fileName];
-    NSData *data = [NSData dataWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:fileName]];
+    
+    NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:@"Web" withExtension:@"bundle"];
+    NSBundle *bundle = [NSBundle bundleWithURL:bundleURL];
+    
+    NSData *data = [NSData dataWithContentsOfFile:[[bundle resourcePath] stringByAppendingPathComponent:fileName]];
     return [self initWithHtmlData:data contentType:contentType];
 }
 

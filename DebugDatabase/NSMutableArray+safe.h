@@ -15,7 +15,7 @@
 @end
 
 // NSArray
-id arrGetObject(NSArray *arr, NSUInteger index, Class aClass);
-NSDictionary * arrGetDic(NSArray *arr, NSUInteger index);
-NSString * arrGetString(NSArray *arr, NSUInteger index);
-NSArray * arrGetArray(NSArray *arr, NSUInteger index);
+id yy_arrGetObject(NSArray *arr, NSUInteger index, Class aClass);
+NSDictionary * yy_arrGetDic(NSArray *arr, NSUInteger index);
+NSString * yy_arrGetString(NSArray *arr, NSUInteger index);
+NSArray * yy_arrGetArray(NSArray *arr, NSUInteger index);

@@ -12,7 +12,10 @@
 
 + (instancetype)shared;
 
-- (void)startServerOnport:(NSInteger)port directories:(NSArray*)directories;
+- (void)startServerOnPort:(NSInteger)port directories:(NSArray*)directories;
+
+//默认目录为cache目录和document目录
+- (void)startServerOnPort:(NSInteger)port;
 
 - (NSString*)mapOrArrayTransformToJsonString:(NSObject*)obj;
 

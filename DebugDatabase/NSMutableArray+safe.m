@@ -19,7 +19,7 @@
 @end
 
 // - - - -
-id arrGetObject(NSArray *arr, NSUInteger index, Class aClass) {
+id yy_arrGetObject(NSArray *arr, NSUInteger index, Class aClass) {
     NSDictionary *result = nil;
     if (index < arr.count) {
         result = [arr objectAtIndex:index];
@@ -31,7 +31,7 @@ id arrGetObject(NSArray *arr, NSUInteger index, Class aClass) {
 }
 
 // - - -
-NSDictionary * arrGetDic(NSArray *arr, NSUInteger index) {
+NSDictionary * yy_arrGetDic(NSArray *arr, NSUInteger index) {
     NSDictionary *result = nil;
     if ( index<arr.count ) {
         result = [arr objectAtIndex:index];
@@ -42,8 +42,8 @@ NSDictionary * arrGetDic(NSArray *arr, NSUInteger index) {
     return nil;
 }
 
-NSString * arrGetString(NSArray *arr, NSUInteger index) {
-    id object = arrGetObject(arr, index, [NSObject class]);
+NSString * yy_arrGetString(NSArray *arr, NSUInteger index) {
+    id object = yy_arrGetObject(arr, index, [NSObject class]);
     if ([object isKindOfClass:[NSString class]]) {
         return object;
     }
@@ -53,6 +53,6 @@ NSString * arrGetString(NSArray *arr, NSUInteger index) {
     return nil;
 }
 
-NSArray * arrGetArray(NSArray *arr, NSUInteger index) {
-    return arrGetObject(arr, index, [NSArray class]);
+NSArray * yy_arrGetArray(NSArray *arr, NSUInteger index) {
+    return yy_arrGetObject(arr, index, [NSArray class]);
 }

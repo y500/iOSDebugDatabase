@@ -19,7 +19,6 @@
 @property(nonatomic, strong) GCDAsyncSocket *webServer;
 @property(nonatomic, copy) NSString *host;
 @property(nonatomic, assign) NSInteger port;
-@property(nonatomic, strong) NSArray *dicrectories;
 @property(nonatomic, strong) NSDictionary *databasePaths;
 
 
@@ -36,15 +35,23 @@
     return debugDatabaseManager;
 }
 
-- (void)startServerOnport:(NSInteger)port directories:(NSArray *)directories {
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.webServer = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    }
+    return self;
+}
+
+- (void)startServerOnPort:(NSInteger)port directories:(NSArray *)directories {
     _port = port;
-    _dicrectories = directories;
     
-    _databasePaths = [self getAllDBPathsWithDirectories:_dicrectories];
+    _databasePaths = [self getAllDBPathsWithDirectories:directories];
     
     NSError *error;
     
-    if ([self.webServer acceptOnPort:port error:&error]) {
+    self.webServer = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([_webServer acceptOnPort:_port error:&error]) {
         NSLog(@"server start on %@:%zd",_webServer.localHost,_webServer.localPort);
         _host = _webServer.localHost;
     }else{
@@ -52,19 +59,27 @@
     }
 }
 
+- (void)startServerOnPort:(NSInteger)port {
+    NSString *cacheDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Caches"];
+    NSString *documentDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    [self startServerOnPort:port directories:@[cacheDir, documentDir]];
+}
+
 #pragma mark GCDAsyncSocket delegate
 - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(nonnull NSString *)host port:(uint16_t)port {
-    NSLog(@"%@ %zd", host, port);
+    NSLog(@"didConnectToHost:%@ %zd", host, port);
 }
 
 - (void)socket:(GCDAsyncSocket *)sock didAcceptNewSocket:(GCDAsyncSocket *)newSocket {
     NSLog(@"didAcceptNewSocket");
+    NSLog(@"newSocket %@ %zd", newSocket.localHost, newSocket.localPort);
+    
     [newSocket readDataWithTimeout:-1 tag:0];
 }
 
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
-    NSLog(@"%@ %@ %zd", sock.userData, sock.localHost, sock.localPort);
-    
+    NSLog(@"didReadData");
+    NSLog(@"sock %@ %zd", sock.localHost, sock.localPort);
     DebugDatabaseRequest *request = [DebugDatabaseRequest debugDatabaseRequestWithData:data];
     
     //处理每一个request
@@ -119,7 +134,7 @@
         NSString *dbName = [params objectForKey:@"dbName"];
         NSString *tableName = [params objectForKey:@"tableName"];
         
-        NSDictionary *updateData =[[dicGetString(params, @"updatedData") URLDecode] JSONObject];
+        NSDictionary *updateData =[[yy_dicGetString(params, @"updatedData") URLDecode] JSONObject];
         
         BOOL isSuccess;
         
@@ -129,14 +144,14 @@
             NSMutableDictionary *contentValues = [NSMutableDictionary dictionary];
             NSMutableDictionary *where = [NSMutableDictionary dictionary];
             for (NSDictionary *columnDic in updateData) {
-                if (dicGetBool(columnDic, @"isPrimary", NO)) {
-                    [where setObject:[columnDic objectForKey:@"value"]?:[NSNull null] forKey:dicGetStringSafe(columnDic, @"title")];
+                if (yy_dicGetBool(columnDic, @"isPrimary", NO)) {
+                    [where setObject:[columnDic objectForKey:@"value"]?:[NSNull null] forKey:yy_dicGetStringSafe(columnDic, @"title")];
                 } else {
                     [contentValues setObject:[columnDic objectForKey:@"value"]?:[NSNull null] forKey:[columnDic objectForKey:@"title"]];
                 }
             }
             
-            [[DatabaseUtil shared] openDatabase:dicGetString(_databasePaths, dbName)];
+            [[DatabaseUtil shared] openDatabase:yy_dicGetString(_databasePaths, dbName)];
             isSuccess = [[DatabaseUtil shared] updateRecordInDatabase:dbName tableName:tableName data:contentValues condition:where];
             [[DatabaseUtil shared] closeDatabase];
             
@@ -150,7 +165,7 @@
         NSString *dbName = [params objectForKey:@"dbName"];
         NSString *tableName = [params objectForKey:@"tableName"];
         
-        NSDictionary *deleteData =[[dicGetString(params, @"deleteData") URLDecode] JSONObject];
+        NSDictionary *deleteData =[[yy_dicGetString(params, @"deleteData") URLDecode] JSONObject];
         
         BOOL isSuccess;
         
@@ -159,12 +174,12 @@
         }else {
             NSMutableDictionary *where = [NSMutableDictionary dictionary];
             for (NSDictionary *columnDic in deleteData) {
-                if (dicGetBool(columnDic, @"isPrimary", NO)) {
-                    [where setObject:[columnDic objectForKey:@"value"]?:[NSNull null] forKey:dicGetStringSafe(columnDic, @"title")];
+                if (yy_dicGetBool(columnDic, @"isPrimary", NO)) {
+                    [where setObject:[columnDic objectForKey:@"value"]?:[NSNull null] forKey:yy_dicGetStringSafe(columnDic, @"title")];
                 }
             }
             
-            [[DatabaseUtil shared] openDatabase:dicGetString(_databasePaths, dbName)];
+            [[DatabaseUtil shared] openDatabase:yy_dicGetString(_databasePaths, dbName)];
             isSuccess = [[DatabaseUtil shared] deleteRecordInDatabase:dbName tableName:tableName condition:where limit:nil];
             [[DatabaseUtil shared] closeDatabase];
             
@@ -178,11 +193,11 @@
     else if ([url.path isEqualToString:@"/query"]) {
         NSDictionary *params = url.queryParams;
         NSString *dbName = [params objectForKey:@"database"];
-        NSString *query = [dicGetString(params, @"query") URLDecode];
+        NSString *query = [yy_dicGetString(params, @"query") URLDecode];
         NSString *tableName = [self getTableNameFromQuery:query];
         NSString *operator = [self getOperatorFromQuery:query];
         
-        [[DatabaseUtil shared] openDatabase:dicGetString(_databasePaths, dbName)];
+        [[DatabaseUtil shared] openDatabase:yy_dicGetString(_databasePaths, dbName)];
         NSDictionary *resultData = [[DatabaseUtil shared] executeQueryInDatabase:dbName tableName:tableName operator:operator query:query];
         [[DatabaseUtil shared] closeDatabase];
         
@@ -192,7 +207,7 @@
     }
     else if ([url.path isEqualToString:@"/downloadDb"]) {
         NSString *dbName = [url.queryParams objectForKey:@"database"];
-        DebugDatabaseResponse *response = [[DebugDatabaseResponse alloc] initWithFilePath:dicGetString(_databasePaths, dbName)];
+        DebugDatabaseResponse *response = [[DebugDatabaseResponse alloc] initWithFilePath:yy_dicGetString(_databasePaths, dbName)];
         response.contentType = @"application/octet-stream";
         [sock writeData:response.contentData withTimeout:-1 tag:0];
     }
@@ -202,6 +217,10 @@
         response.statusCode = 404;
         [sock writeData:response.contentData withTimeout:-1 tag:0];
     }
+}
+
+- (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err {
+    NSLog(@"socketDidDisconnect:%@", err?err:@"");
 }
 
 - (NSDictionary*)getAllDBPathsWithDirectories:(NSArray*)directories {
@@ -222,13 +241,6 @@
     }
     
     return paths;
-}
-
-- (GCDAsyncSocket*)webServer {
-    if (!_webServer) {
-        _webServer = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
-    }
-    return _webServer;
 }
 
 - (NSString*)mapOrArrayTransformToJsonString:(NSObject*)obj {

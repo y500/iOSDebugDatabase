@@ -19,7 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [[DebugDatabaseManager shared] startServerOnport:9002 directories:@[[[NSBundle mainBundle] resourcePath]]];
+    [[DebugDatabaseManager shared] startServerOnPort:9002 directories:@[[[NSBundle mainBundle] resourcePath]]];
     
     return YES;
 }
