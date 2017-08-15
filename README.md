@@ -1,6 +1,6 @@
 # YYDebugDatabase
 
-###YYDebugDatabase is a powerful library for debugging databases in iOS applications. Which like [Android Debug database](https://github.com/amitshekhariitbhu/Android-Debug-Database)
+### YYDebugDatabase is a powerful library for debugging databases in iOS applications. Which like [Android Debug database](https://github.com/amitshekhariitbhu/Android-Debug-Database)
 
 ### YYDebugDatabase allows you to view and edit databases directly in your browser in a very simple way.
 
@@ -66,7 +66,7 @@ That’s all, just start the application, you will see in the logcat an entry li
 
 Now open the provided link in your browser, and you will see like this:
 
-![](http://noti.qiniudn.com/693916a699a78a1c01da2d93126c0ed7.png)
+![](http://noti.qiniudn.com/693916a699a78a1c01da2d93126c0ed7.png)
 
 query:
 ![](http://noti.qiniudn.com/21dd97948e85cf928751ef6d2b7d9266.png)
