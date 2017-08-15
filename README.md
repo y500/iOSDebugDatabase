@@ -59,6 +59,22 @@ making one line code at `application:didFinishLaunchingWithOptions`:
 	[[DebugDatabaseManager shared] startServerOnPort:9002];
 #end
 ```
+# Advanced
+
+It only shows the databasesin in Documents directory and Library/Cache directory by default, if you want show databases in other directories, you can use:
+
+```
+- (void)startServerOnPort:(NSInteger)port directories:(NSArray*)directories
+```
+for example:
+
+```
+    NSString *resourceDirectory = [[NSBundle mainBundle] resourcePath];
+    NSString *databaseDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/database"];
+    NSString *documentDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documnets"];
+    NSString *cacheDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Cache"];
+    [[DebugDatabaseManager shared] startServerOnPort:9002 directories:@[resourceDirectory, databaseDirectory, documentDirectory, cacheDirectory]];
+```
 
 That’s all, just start the application :
 
