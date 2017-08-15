@@ -9,7 +9,7 @@
 - [x] Run any sql query on the given database to update and delete your data.
 - [x] Directly edit the database values.
 - [x] Directly add a row in the database.
-- [x] Delete database rows and shared preferences.
+- [x] Delete database rows.
 - [x] Search in your data.
 - [x] Sort data.
 - [x] Download database.
@@ -22,14 +22,14 @@
 To integrate YYDebugDatabase into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-pod 'AFNetworking', '~> 3.0'
+pod 'YYDebugDatabase'
 ```
 #### Not build in Release
 
 First, add configurations in Podfile.
 
 ```ruby
-pod 'GodEye', '~> 1.0.0', :configurations => ['Debug']
+pod 'YYDebugDatabase', :configurations => ['Debug']
 ```
 
 
@@ -47,7 +47,7 @@ import at AppDelegate.m:
 #import YYDebugDatabaseManager.h
 ```
 
-making GodEye at `application:didFinishLaunchingWithOptions`:
+making one line code at `application:didFinishLaunchingWithOptions`:
 
 ```ruby
 [[DebugDatabaseManager shared] startServerOnPort:9002];
@@ -60,9 +60,7 @@ making GodEye at `application:didFinishLaunchingWithOptions`:
 #end
 ```
 
-That’s all, just start the application, you will see in the logcat an entry like follows :
-
-* D/DebugDB: Open http://XXX.XXX.X.XXX:9002 in your browser
+That’s all, just start the application :
 
 Now open the provided link in your browser, and you will see like this:
 
@@ -78,8 +76,9 @@ delete:
 
 
 Important:
-- Your Android phone and laptop should be connected to the same Network (Wifi or LAN).
-- If you use Simulator you can use address: http://127.0.0.1:9002
+- Your iPhone and laptop should be connected to the same Network (Wifi or LAN).
+- the host of you link address is the iPhone's net address.
+- If you use Simulator you can use address: http://127.0.0.1:9002.
 - the port must be same as you write in Appdelegate.m
 
 ### License
