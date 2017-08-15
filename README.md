@@ -59,6 +59,22 @@ making one line code at `application:didFinishLaunchingWithOptions`:
 	[[DebugDatabaseManager shared] startServerOnPort:9002];
 #end
 ```
+# Advanced
+
+It only shows the databasesin in Documents directory and Library/Cache directory by default, if you want show databases in other directories, you can use:
+
+```
+- (void)startServerOnPort:(NSInteger)port directories:(NSArray*)directories
+```
+for example:
+
+```
+    NSString *resourceDirectory = [[NSBundle mainBundle] resourcePath];
+    NSString *databaseDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/database"];
+    NSString *documentDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documnets"];
+    NSString *cacheDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Cache"];
+    [[DebugDatabaseManager shared] startServerOnPort:9002 directories:@[resourceDirectory, databaseDirectory, documentDirectory, cacheDirectory]];
+```
 
 That’s all, just start the application :
 
@@ -67,11 +83,15 @@ Now open the provided link in your browser, and you will see like this:
 ![](http://noti.qiniudn.com/693916a699a78a1c01da2d93126c0ed7.png)
 
 query:
+
 ![](http://noti.qiniudn.com/21dd97948e85cf928751ef6d2b7d9266.png)
 
 edit:
+
 ![](http://noti.qiniudn.com/b081fa0e1842a05c23321d08f7cec668.png)
+
 delete:
+
 ![](http://noti.qiniudn.com/d0c7cb82ae6aadf790dc57da6c6e888f.png)
 
 
@@ -97,3 +117,4 @@ Important:
    See the License for the specific language governing permissions and
    limitations under the License.
 ```
+
