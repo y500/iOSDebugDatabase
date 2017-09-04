@@ -43,18 +43,18 @@ $ pod install
 
 import at AppDelegate.m:
 
-```
+```objc
 #import YYDebugDatabaseManager.h
 ```
 
 making one line code at `application:didFinishLaunchingWithOptions`:
 
-```ruby
+```objc
 [[DebugDatabaseManager shared] startServerOnPort:9002];
 ```
 #### Not run in Release
 
-```
+```objc
 #ifdef DEBUG
 	[[DebugDatabaseManager shared] startServerOnPort:9002];
 #end
@@ -63,12 +63,12 @@ making one line code at `application:didFinishLaunchingWithOptions`:
 
 It only shows the databasesin in Documents directory and Library/Cache directory by default, if you want show databases in other directories, you can use:
 
-```
+```objc
 - (void)startServerOnPort:(NSInteger)port directories:(NSArray*)directories
 ```
 for example:
 
-```
+```objc
     NSString *resourceDirectory = [[NSBundle mainBundle] resourcePath];
     NSString *databaseDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/database"];
     NSString *documentDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documnets"];
