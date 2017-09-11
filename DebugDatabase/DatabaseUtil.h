@@ -22,4 +22,6 @@
 - (BOOL)updateRecordInDatabase:(NSString*)database tableName:(NSString*)tableName data:(NSDictionary*)data condition:(NSDictionary*)condition;
 - (BOOL)deleteRecordInDatabase:(NSString *)database tableName:(NSString *)tableName condition:(NSDictionary *)condition limit:(NSString *)limit;
 - (NSDictionary*)executeQueryInDatabase:(NSString*)database tableName:(NSString*)tableName operator:(NSString*)operator query:(NSString*)query;
+- (NSDictionary*)userDefaultData;
+- (NSDictionary*)getAppInfoData;
 @end

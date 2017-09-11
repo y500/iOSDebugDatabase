@@ -1,5 +1,4 @@
 $( document ).ready(function() {
-    getDBList();
     $("#query").keypress(function(e){
         if(e.which == 13) {
             queryFunction();
@@ -152,32 +151,46 @@ function inflateData(result){
        $("#db-data-div").remove();
        $("#parent-data-div").append('<div id="db-data-div"><table class="display nowrap" cellpadding="0" border="0" cellspacing="0" width="100%" class="table table-striped table-bordered display" id="db-data"></table></div>');
 
-       $(tableId).dataTable({
-           "data": columnData,
-           "columnDefs": columnHeader,
-           'bPaginate': true,
-           'searching': true,
-           'bFilter': true,
-           'bInfo': true,
-           "bSort" : true,
-           "scrollX": true,
-           "iDisplayLength": 10,
-           "dom": "Bfrtip",
-            select: 'single',
-            altEditor: true,     // Enable altEditor
-            buttons: [
-                {
-                    extend: 'selected', // Bind to Selected row
-                    text: 'Edit',
-                    name: 'edit'        // do not change name
-                },
-                {
-                    extend: 'selected',
-                    text: 'Delete',
-                    name: 'delete'
-                }
-            ]
-       })
+       if (result.userDefault) {
+           $(tableId).dataTable({
+                                "data": columnData,
+                                "columnDefs": columnHeader,
+                                'bPaginate': true,
+                                'searching': true,
+                                'bFilter': true,
+                                'bInfo': true,
+                                "bSort" : true,
+                                "scrollX": true,
+                                "iDisplayLength": 10
+                                })
+       }else {
+           $(tableId).dataTable({
+                                "data": columnData,
+                                "columnDefs": columnHeader,
+                                'bPaginate': true,
+                                'searching': true,
+                                'bFilter': true,
+                                'bInfo': true,
+                                "bSort" : true,
+                                "scrollX": true,
+                                "iDisplayLength": 10,
+                                "dom": "Bfrtip",
+                                select: 'single',
+                                altEditor: true,     // Enable altEditor
+                                buttons: [
+                                          {
+                                          extend: 'selected', // Bind to Selected row
+                                          text: 'Edit',
+                                          name: 'edit'        // do not change name
+                                          },
+                                          {
+                                          extend: 'selected',
+                                          text: 'Delete',
+                                          name: 'delete'
+                                          }
+                                          ]
+                                })
+       }
 
        //attach row-updated listener
        $(tableId).on('update-row.dt', function (e, updatedRowData, callback) {
@@ -225,6 +238,69 @@ function inflateData(result){
           }
       }
    }
+
+}
+
+function inflateAppInfoData(result){
+
+    if(result.isSuccessful){
+
+        if(!result.isSelectQuery){
+            showSuccessInfo("Query Executed Successfully");
+            return;
+        }
+
+        var columnHeader = result.tableInfos;
+
+        // set function to return cell data for different usages like set, display, filter, search etc..
+        for(var i = 0; i < columnHeader.length; i++) {
+            columnHeader[i]['targets'] = i;
+            columnHeader[i]['data'] = function(row, type, val, meta) {
+                var dataType = row[meta.col].dataType;
+                if (type == "sort" && dataType == "boolean") {
+                    return row[meta.col].value ? 1 : 0;
+                }
+                return row[meta.col].value;
+            }
+        }
+        var columnData = result.rows;
+        var tableId = "#db-appinfo";
+        if ($.fn.DataTable.isDataTable(tableId) ) {
+            $(tableId).DataTable().destroy();
+        }
+
+        $("#db-appinfo-div").remove();
+        $("#parent-appinfo-div").append('<div id="db-appinfo-div"><table class="display nowrap" cellpadding="0" border="0" cellspacing="0" width="100%" class="table table-striped table-bordered display hide-column-names" id="db-appinfo"></table></div>');
+
+        $(tableId).dataTable({
+            "data": columnData,
+            "columnDefs": columnHeader,
+            'bPaginate': false,
+            'searching': false,
+            'bFilter': false,
+            'bInfo': false,
+            "bSort" : false,
+            "scrollX": true,
+            "iDisplayLength": 99,
+            "fnDrawCallback": function (oSettings) {
+                $(oSettings.nTHead).hide();
+            }
+        })
+
+        // hack to fix alignment issue when scrollX is enabled
+        $(".dataTables_scrollHeadInner").css({"width":"100%"});
+        $(".table ").css({"width":"100%"});
+    }else{
+        if(!result.isSelectQuery){
+            showErrorInfo("Query Execution Failed");
+        }else {
+            if(result.errorMessage){
+                showErrorInfo(result.errorMessage);
+            }else{
+                showErrorInfo("Some Error Occurred");
+            }
+        }
+    }
 
 }
 
@@ -328,4 +404,17 @@ function showErrorInfo(message){
     setTimeout(function(){
         snackbarElement.removeClass("show");
     }, 3000);
+}
+
+function getUserDefault() {
+    $.ajax({url: "getUserDefault", success: function(result){
+           inflateData(result);
+    }});
+}
+
+function getAppInfo() {
+    $.ajax({url: "getAppInfo", success: function(result){
+           inflateAppInfoData(result);
+           getUserDefault();
+    }});
 }

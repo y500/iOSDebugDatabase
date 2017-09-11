@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--
+ ~ /*
+ ~  *    Copyright (C) 2016 Amit Shekhar
+ ~  *    Copyright (C) 2011 Android Open Source Project
+ ~  *
+ ~  *    Licensed under the Apache License, Version 2.0 (the "License");
+ ~  *    you may not use this file except in compliance with the License.
+ ~  *    You may obtain a copy of the License at
+ ~  *
+ ~  *        http://www.apache.org/licenses/LICENSE-2.0
+ ~  *
+ ~  *    Unless required by applicable law or agreed to in writing, software
+ ~  *    distributed under the License is distributed on an "AS IS" BASIS,
+ ~  *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ ~  *    See the License for the specific language governing permissions and
+ ~  *    limitations under the License.
+ ~  */
+ -->
+
+<html lang="en">
+<head>
+    <title>YYDebugDatabase - iOS Database Debugging</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='shortcut icon' href='favicon.ico' type='image/x-icon'>
+
+    <script type= "text/javascript" src="jquery.min.js"></script>
+    <script type= "text/javascript" src="bootstrap.min.js"></script>
+    <script type= "text/javascript" src="jquery.dataTables.min.js"></script>
+    <script type= "text/javascript" src="dataTables.altEditor.free.js"></script>
+    <script type= "text/javascript" src="dataTables.buttons.min.js"></script>
+    <script type= "text/javascript" src="dataTables.select.min.js"></script>
+    <script type= "text/javascript" src="dataTables.responsive.min.js"></script>
+
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="custom.css" rel="stylesheet">
+    <link href="jquery.dataTables.min.css" rel="stylesheet">
+    <link href="buttons.dataTables.min.css" rel="stylesheet">
+    <link href="select.dataTables.min.css" rel="stylesheet">
+    <link href="responsive.dataTables.min.css" rel="stylesheet">
+
+</head>
+<body onload='getAppInfo()'>
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">iOS Debug Database</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="index.html">Database</a>
+                </li>
+                <li>
+                    <a href="https://github.com/y500/YYDebugDatabase"
+                       target="_blank">Github</a>
+                </li>
+                <li>
+                    <a href="http://y500.me"
+                       target="_blank">Blog</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+<div class="container padding-fifty">
+    <div class="row padding-twenty">
+
+        <div id="parent-appinfo-div" class="">
+            <div class="panel panel-info">
+                <div class="panel-heading">App Infomation</div>
+            </div>
+        </div>
+    <div style="height: 50px"></div>
+        <div id="parent-data-div" class="">
+            <div class="panel panel-info">
+                <div class="panel-heading">Userdefault</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="snackbar">Data Updated Successfully</div>
+
+</div>
+
+<script type= "text/javascript"  src="app.js"></script>
+</body>
+</html>

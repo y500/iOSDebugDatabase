@@ -288,4 +288,107 @@
     }
 }
 
+- (NSDictionary*)userDefaultData {
+    
+    NSMutableDictionary *tableData = [NSMutableDictionary dictionary];
+    [tableData safe_setObject:@(1) forKey:@"isSelectQuery"];
+    [tableData safe_setObject:@(1) forKey:@"isSuccessful"];
+    
+    NSMutableArray *tableInfoResult = [NSMutableArray array];
+    [tableInfoResult safe_addObject:@{@"title": @"key", @"isPrimary" : @(1), @"dataType" : @"text"}];
+    [tableInfoResult safe_addObject:@{@"title": @"value", @"isPrimary" : @(0), @"dataType" : @"text"}];
+    
+    [tableData safe_setObject:tableInfoResult forKey:@"tableInfos"];
+    
+    [tableData safe_setObject:@(NO) forKey:@"isEditable"];
+    
+    NSMutableArray *rows = @[].mutableCopy;
+    
+    NSDictionary *userData = [[NSUserDefaults standardUserDefaults]dictionaryRepresentation];
+    
+    for (NSString *key in userData.allKeys) {
+        NSMutableArray *row = @[].mutableCopy;
+        
+        [row safe_addObject:@{@"dataType" : @"text", @"value" : key?key:@""}];
+        
+        id value = [userData objectForKey:key];
+        
+        if ([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]]) {
+            [row safe_addObject:@{@"dataType" : @"text", @"value" : yy_dicGetStringSafe(userData, key)}];
+        }else {
+            [row safe_addObject:@{@"dataType" : @"text", @"value" : [value description]?:@""}];
+        }
+        
+        [rows addObject:row];
+    }
+    [tableData safe_setObject:rows forKey:@"rows"];
+    
+    return tableData;
+}
+
+- (NSDictionary*)getAppInfoData {
+    NSMutableDictionary *tableData = [NSMutableDictionary dictionary];
+    [tableData safe_setObject:@(1) forKey:@"isSelectQuery"];
+    [tableData safe_setObject:@(1) forKey:@"isSuccessful"];
+    
+    NSMutableArray *tableInfoResult = [NSMutableArray array];
+    [tableInfoResult safe_addObject:@{@"title": @"property name", @"isPrimary" : @(1), @"dataType" : @"text"}];
+    [tableInfoResult safe_addObject:@{@"title": @"property value", @"isPrimary" : @(0), @"dataType" : @"text"}];
+    
+    [tableData safe_setObject:tableInfoResult forKey:@"tableInfos"];
+    
+    [tableData safe_setObject:@(NO) forKey:@"isEditable"];
+    
+    NSMutableArray *rows = @[].mutableCopy;
+    
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    //app name
+    NSString *displayName = yy_dicGetStringSafe(infoDic, @"CFBundleDisplayName");
+    NSMutableArray *displayRow = @[].mutableCopy;
+    [displayRow safe_addObject:@{@"dataType": @"text", @"value": @"Display Name"}];
+    [displayRow safe_addObject:@{@"dataType": @"text", @"value": displayName}];
+    [rows safe_addObject:displayRow];
+    
+    //app bundle identifier
+    NSString *bundleIdentifer = yy_dicGetStringSafe(infoDic, kCFBundleIdentifierKey);
+    NSMutableArray *bundleRow = @[].mutableCopy;
+    [bundleRow safe_addObject:@{@"dataType": @"text", @"value": @"Bundle Identifer"}];
+    [bundleRow safe_addObject:@{@"dataType": @"text", @"value": bundleIdentifer}];
+    [rows safe_addObject:bundleRow];
+    
+    //app version
+    NSString *version = yy_dicGetStringSafe(infoDic, @"CFBundleShortVersionString");
+    NSMutableArray *versionRow = @[].mutableCopy;
+    [versionRow safe_addObject:@{@"dataType": @"text", @"value": @"Version"}];
+    [versionRow safe_addObject:@{@"dataType": @"text", @"value": version}];
+    [rows safe_addObject:versionRow];
+    
+    //app build number
+    NSString *build = yy_dicGetStringSafe(infoDic, kCFBundleVersionKey);
+    NSMutableArray *buildRow = @[].mutableCopy;
+    [buildRow safe_addObject:@{@"dataType": @"text", @"value": @"Build"}];
+    [buildRow safe_addObject:@{@"dataType": @"text", @"value": build}];
+    [rows safe_addObject:buildRow];
+    
+    //document path
+    NSArray *pathSearch = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [pathSearch objectAtIndex:0];
+    NSMutableArray *documentRow = @[].mutableCopy;
+    [documentRow safe_addObject:@{@"dataType": @"text", @"value": @"Documents"}];
+    [documentRow safe_addObject:@{@"dataType": @"text", @"value": documentsPath?documentsPath:@""}];
+    [rows safe_addObject:documentRow];
+    
+    //cache path
+    NSArray *pathSearchCache = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *cachePath = [pathSearchCache objectAtIndex:0];
+    NSMutableArray *cacheRow = @[].mutableCopy;
+    [cacheRow safe_addObject:@{@"dataType": @"text", @"value": @"Cache"}];
+    [cacheRow safe_addObject:@{@"dataType": @"text", @"value": cachePath?cachePath:@""}];
+    [rows safe_addObject:cacheRow];
+    
+    [tableData safe_setObject:rows forKey:@"rows"];
+    
+    return tableData;
+}
+
 @end

@@ -17,6 +17,7 @@
 @interface DebugDatabaseManager ()<GCDAsyncSocketDelegate>
 
 @property(nonatomic, strong) GCDAsyncSocket *webServer;
+@property(nonatomic, strong) GCDAsyncSocket *connectedSocket;
 @property(nonatomic, copy) NSString *host;
 @property(nonatomic, assign) NSInteger port;
 @property(nonatomic, strong) NSDictionary *databasePaths;
@@ -73,7 +74,7 @@
 - (void)socket:(GCDAsyncSocket *)sock didAcceptNewSocket:(GCDAsyncSocket *)newSocket {
     NSLog(@"didAcceptNewSocket");
     NSLog(@"newSocket %@ %zd", newSocket.localHost, newSocket.localPort);
-    
+    _connectedSocket = newSocket;
     [newSocket readDataWithTimeout:-1 tag:0];
 }
 
@@ -209,6 +210,19 @@
         NSString *dbName = [url.queryParams objectForKey:@"database"];
         DebugDatabaseResponse *response = [[DebugDatabaseResponse alloc] initWithFilePath:yy_dicGetString(_databasePaths, dbName)];
         response.contentType = @"application/octet-stream";
+        [sock writeData:response.contentData withTimeout:-1 tag:0];
+    }
+    else if ([url.path isEqualToString:@"/getUserDefault"]) {
+        NSMutableDictionary *userData = [[DatabaseUtil shared] userDefaultData].mutableCopy;
+        
+        [userData safe_setObject:@YES forKey:@"userDefault"];
+        
+        DebugDatabaseResponse *response = [[DebugDatabaseResponse alloc] initWithHtmlData:[[self mapOrArrayTransformToJsonString:userData] dataUsingEncoding:NSUTF8StringEncoding] contentType:@"application/json"];
+        [sock writeData:response.contentData withTimeout:-1 tag:0];
+    }
+    else if ([url.path isEqualToString:@"/getAppInfo"]) {
+        NSDictionary *appInfo = [[DatabaseUtil shared] getAppInfoData];
+        DebugDatabaseResponse *response = [[DebugDatabaseResponse alloc] initWithHtmlData:[[self mapOrArrayTransformToJsonString:appInfo] dataUsingEncoding:NSUTF8StringEncoding] contentType:@"application/json"];
         [sock writeData:response.contentData withTimeout:-1 tag:0];
     }
     //404 not found
