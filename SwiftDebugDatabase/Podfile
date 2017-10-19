@@ -1,0 +1,5 @@
+target 'SwiftDebugDatabase' do
+    use_frameworks!
+    pod 'YYDebugDatabase', :path => '../'
+end
+
