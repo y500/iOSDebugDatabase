@@ -24,6 +24,14 @@ To integrate YYDebugDatabase into your Xcode project using CocoaPods, specify it
 ```ruby
 pod 'YYDebugDatabase'
 ```
+
+If use Swift, remember to add `use_frameworks!`
+
+```ruby
+use_frameworks!
+pod 'YYDebugDatabase'
+```
+
 #### Not build in Release
 
 First, add configurations in Podfile.
@@ -59,6 +67,20 @@ making one line code at `application:didFinishLaunchingWithOptions`:
 	[[DebugDatabaseManager shared] startServerOnPort:9002];
 #end
 ```
+
+If use Swift:
+
+import at Appdelegate.swift:
+
+```swift
+import YYDebugDatabase
+```
+making one line code at `application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?)`:
+
+```Swift:
+DebugDatabaseManager.shared().startServer(onPort: 9002);
+```
+
 # Advanced
 
 It only shows the databasesin in Documents directory and Library/Cache directory by default, if you want show databases in other directories, you can use:
@@ -75,8 +97,16 @@ for example:
     NSString *cacheDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Cache"];
     [[DebugDatabaseManager shared] startServerOnPort:9002 directories:@[resourceDirectory, databaseDirectory, documentDirectory, cacheDirectory]];
 ```
+If use Swift:
 
-That’s all, just start the application :
+```swift
+    let directory:String = (Bundle.main.resourcePath)!;
+    let documentsPath:String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+    let cachePath:String = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
+    DebugDatabaseManager.shared().startServer(onPort: 9002, directories: [directory, documentsPath, cachePath]);
+```
+
+That’s all(you can look at the Demo for details), just start the application :
 
 Now open the provided link in your browser, and you will see like this:
 
