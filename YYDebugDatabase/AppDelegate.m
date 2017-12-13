@@ -19,7 +19,24 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [[DebugDatabaseManager shared] startServerOnPort:9002 directories:@[[[NSBundle mainBundle] resourcePath]]];
+    NSFileManager*fileManager =[NSFileManager defaultManager];
+    NSError*error;
+    NSArray*paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString*documentsDirectory =[paths objectAtIndex:0];
+    
+    NSString*txtPath =[documentsDirectory stringByAppendingPathComponent:@"document.db"];
+    
+    if([fileManager fileExistsAtPath:txtPath]== NO){
+        NSString*resourcePath =[[NSBundle mainBundle] pathForResource:@"Car" ofType:@"db"];
+        [fileManager copyItemAtPath:resourcePath toPath:txtPath error:&error];
+        NSLog(@"%@", error);
+    }
+    
+    NSString *resourceDirectory = [[NSBundle mainBundle] resourcePath];
+    NSString *databaseDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/database"];
+    NSString *documentDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    NSString *cacheDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Cache"];
+    [[DebugDatabaseManager shared] startServerOnPort:80 directories:@[resourceDirectory, databaseDirectory, documentDirectory, cacheDirectory]];
     
     return YES;
 }

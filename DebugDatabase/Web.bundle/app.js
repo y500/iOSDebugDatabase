@@ -319,7 +319,7 @@ function updateTableData(updatedData, callback) {
     });
     //build request parameters
     var requestParameters = {};
-    requestParameters.dbName = selectedTableElement.attr('data-db-name');
+    requestParameters.database = selectedTableElement.attr('data-db-name');
     requestParameters.tableName = selectedTableElement.attr('data-table-name');;
     requestParameters.updatedData = encodeURIComponent(JSON.stringify(filteredUpdatedData));
 
@@ -361,7 +361,7 @@ function deleteTableData(deleteData, callback) {
 
         //build request parameters
         var requestParameters = {};
-        requestParameters.dbName = selectedTableElement.attr('data-db-name');
+        requestParameters.database = selectedTableElement.attr('data-db-name');
         requestParameters.tableName = selectedTableElement.attr('data-table-name');;
         requestParameters.deleteData = encodeURIComponent(JSON.stringify(filteredUpdatedData));
 

@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GCDWebServer.h"
 
-@interface DebugDatabaseManager : NSObject
+@interface DebugDatabaseManager : GCDWebServer
 
 + (instancetype)shared;
 
@@ -16,7 +17,5 @@
 
 //默认目录为cache目录和document目录
 - (void)startServerOnPort:(NSInteger)port;
-
-- (NSString*)mapOrArrayTransformToJsonString:(NSObject*)obj;
 
 @end

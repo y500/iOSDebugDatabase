@@ -15,8 +15,6 @@
 		E84AE5FB1F3ADDE3003A9EB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E84AE5FA1F3ADDE3003A9EB7 /* Assets.xcassets */; };
 		E84AE5FE1F3ADDE3003A9EB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E84AE5FC1F3ADDE3003A9EB7 /* LaunchScreen.storyboard */; };
 		E84AE6341F3C4210003A9EB7 /* DebugDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E84AE6331F3C4210003A9EB7 /* DebugDatabaseManager.m */; };
-		E84AE6371F3D4F91003A9EB7 /* DebugDatabaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E84AE6361F3D4F91003A9EB7 /* DebugDatabaseRequest.m */; };
-		E84AE63A1F3D4FA2003A9EB7 /* DebugDatabaseResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E84AE6391F3D4FA2003A9EB7 /* DebugDatabaseResponse.m */; };
 		E84AE63D1F3D8016003A9EB7 /* NSURL+scheme.m in Sources */ = {isa = PBXBuildFile; fileRef = E84AE63C1F3D8016003A9EB7 /* NSURL+scheme.m */; };
 		E84AE6401F3D9BEF003A9EB7 /* Car.db in Resources */ = {isa = PBXBuildFile; fileRef = E84AE63E1F3D8843003A9EB7 /* Car.db */; };
 		E84AE6411F3D9BEF003A9EB7 /* Contact.db in Resources */ = {isa = PBXBuildFile; fileRef = E84AE63F1F3D8843003A9EB7 /* Contact.db */; };
@@ -43,10 +41,6 @@
 		E84AE5FF1F3ADDE3003A9EB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E84AE6321F3C4210003A9EB7 /* DebugDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugDatabaseManager.h; sourceTree = "<group>"; };
 		E84AE6331F3C4210003A9EB7 /* DebugDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugDatabaseManager.m; sourceTree = "<group>"; };
-		E84AE6351F3D4F91003A9EB7 /* DebugDatabaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugDatabaseRequest.h; sourceTree = "<group>"; };
-		E84AE6361F3D4F91003A9EB7 /* DebugDatabaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugDatabaseRequest.m; sourceTree = "<group>"; };
-		E84AE6381F3D4FA2003A9EB7 /* DebugDatabaseResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugDatabaseResponse.h; sourceTree = "<group>"; };
-		E84AE6391F3D4FA2003A9EB7 /* DebugDatabaseResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugDatabaseResponse.m; sourceTree = "<group>"; };
 		E84AE63B1F3D8016003A9EB7 /* NSURL+scheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+scheme.h"; sourceTree = "<group>"; };
 		E84AE63C1F3D8016003A9EB7 /* NSURL+scheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+scheme.m"; sourceTree = "<group>"; };
 		E84AE63E1F3D8843003A9EB7 /* Car.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = Car.db; sourceTree = "<group>"; };
@@ -146,10 +140,6 @@
 				E8E069C81F40954500477064 /* Web.bundle */,
 				E84AE6321F3C4210003A9EB7 /* DebugDatabaseManager.h */,
 				E84AE6331F3C4210003A9EB7 /* DebugDatabaseManager.m */,
-				E84AE6351F3D4F91003A9EB7 /* DebugDatabaseRequest.h */,
-				E84AE6361F3D4F91003A9EB7 /* DebugDatabaseRequest.m */,
-				E84AE6381F3D4FA2003A9EB7 /* DebugDatabaseResponse.h */,
-				E84AE6391F3D4FA2003A9EB7 /* DebugDatabaseResponse.m */,
 				E84AE6421F3D9F8F003A9EB7 /* DatabaseUtil.h */,
 				E84AE6431F3D9F8F003A9EB7 /* DatabaseUtil.m */,
 				E84AE63B1F3D8016003A9EB7 /* NSURL+scheme.h */,
@@ -244,9 +234,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-YYDebugDatabase/Pods-YYDebugDatabase-resources.sh",
+				"${PODS_ROOT}/GCDWebServer/GCDWebUploader/GCDWebUploader.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -274,13 +267,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YYDebugDatabase-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -290,11 +286,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E84AE6371F3D4F91003A9EB7 /* DebugDatabaseRequest.m in Sources */,
 				E84AE6341F3C4210003A9EB7 /* DebugDatabaseManager.m in Sources */,
 				E84AE5F61F3ADDE3003A9EB7 /* ViewController.m in Sources */,
 				E84AE64F1F3EA78F003A9EB7 /* NSString+json.m in Sources */,
-				E84AE63A1F3D4FA2003A9EB7 /* DebugDatabaseResponse.m in Sources */,
 				E84AE64C1F3EA0DF003A9EB7 /* NSMutableDictionary+safe.m in Sources */,
 				E84AE6441F3D9F8F003A9EB7 /* DatabaseUtil.m in Sources */,
 				E84AE63D1F3D8016003A9EB7 /* NSURL+scheme.m in Sources */,

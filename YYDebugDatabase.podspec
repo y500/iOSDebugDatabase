@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'YYDebugDatabase'
-  s.version          = '1.1.0'
+  s.version          = '2.0.0'
   s.summary          = 'easy way to process splite db'
 
   s.homepage         = 'https://y500.me'
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '7.0'
   
-  s.dependency 'CocoaAsyncSocket'
+  s.dependency 'GCDWebServer'
   s.dependency 'FMDB'
 
   s.source_files = 'DebugDatabase/**/*.{h,m}', 'DebugDatabase/*.{h,m}'

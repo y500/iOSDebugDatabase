@@ -1,4 +1,4 @@
 target 'YYDebugDatabase' do
-    pod 'CocoaAsyncSocket'
+    pod "GCDWebServer"
     pod 'FMDB'
 end
