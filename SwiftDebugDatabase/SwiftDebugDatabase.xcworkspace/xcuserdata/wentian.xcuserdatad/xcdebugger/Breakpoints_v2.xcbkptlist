@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "101"
             endingLineNumber = "101"
-            landmarkName = "-socket:didReadData:withTag:"
+            landmarkName = "-setupAdvanceRoutes"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -31,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "242"
             endingLineNumber = "242"
-            landmarkName = "-getAllDBPathsWithDirectories:"
+            landmarkName = "-getTableNameFromQuery:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

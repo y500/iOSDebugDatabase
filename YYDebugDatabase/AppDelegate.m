@@ -36,7 +36,7 @@
     NSString *databaseDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/database"];
     NSString *documentDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     NSString *cacheDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Cache"];
-    [[DebugDatabaseManager shared] startServerOnPort:80 directories:@[resourceDirectory, databaseDirectory, documentDirectory, cacheDirectory]];
+    [[DebugDatabaseManager shared] startServerOnPort:9002 directories:@[resourceDirectory, databaseDirectory, documentDirectory, cacheDirectory]];
     
     return YES;
 }

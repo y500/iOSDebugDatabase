@@ -1,5 +1,6 @@
 target 'SwiftDebugDatabase' do
     use_frameworks!
-    pod 'YYDebugDatabase', :path => '../'
+#    pod 'YYDebugDatabase', :git => 'https://github.com/y500/iOSDebugDatabase.git', :tag => '2.0.0'
+pod 'YYDebugDatabase', :path => '../'
 end
 

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GCDWebServer.h"
+#import <GCDWebServer/GCDWebServer.h>
 
 @interface DebugDatabaseManager : GCDWebServer
 

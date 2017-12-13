@@ -10,7 +10,6 @@
 #import "NSURL+scheme.h"
 #import "DatabaseUtil.h"
 #import "NSString+json.h"
-#import "GCDWebServer.h"
 #import "GCDWebServerRequest.h"
 #import "GCDWebServerDataResponse.h"
 
