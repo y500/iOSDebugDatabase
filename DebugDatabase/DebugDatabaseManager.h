@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+
+#ifdef COCOAPODS
 #import <GCDWebServer/GCDWebServer.h>
+#else
+#import <GCDWebServers/GCDWebServers.h>
+#endif
 
 @interface DebugDatabaseManager : GCDWebServer
 
