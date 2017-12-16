@@ -39,6 +39,22 @@ use_frameworks!
 pod 'YYDebugDatabase'
 ```
 
+#### Carthage
+
+- Cartfile
+
+```
+github "y500/iOSDebugDatabase"
+```
+
+- run `carthage update`
+
+- Add all three `.frameworks` to your target "Embedd Frameworks" Build Phase:
+ 	- `iOSDebugDatabase.framework`
+	- `FMDB.framework`
+	- `GCDWebServers.framework`
+
+
 #### Not build in Release
 
 First, add configurations in Podfile.
