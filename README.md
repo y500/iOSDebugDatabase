@@ -75,7 +75,7 @@ $ pod install
 import at AppDelegate.m:
 
 ```objc
-#import YYDebugDatabaseManager.h
+#import DebugDatabaseManager.h
 ```
 
 making one line code at `application:didFinishLaunchingWithOptions`:
