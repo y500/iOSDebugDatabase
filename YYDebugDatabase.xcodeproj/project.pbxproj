@@ -593,7 +593,7 @@
 				DEVELOPMENT_TEAM = 6M5WCVL2GQ;
 				INFOPLIST_FILE = YYDebugDatabase/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.KingOrient.PropertyLift.YYDebugDatabase;
+				PRODUCT_BUNDLE_IDENTIFIER = com.y500.YYDebugDatabase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -607,7 +607,7 @@
 				DEVELOPMENT_TEAM = 6M5WCVL2GQ;
 				INFOPLIST_FILE = YYDebugDatabase/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.KingOrient.PropertyLift.YYDebugDatabase;
+				PRODUCT_BUNDLE_IDENTIFIER = com.y500.YYDebugDatabase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
