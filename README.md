@@ -15,6 +15,13 @@
 - [x] Download database.
 
 
+# <span style="color:red">Release 2.0.0:</span>
+* **Replace CocoaAsyncSocket with GCDWebServer, which is higher level server that more convenient.**
+* **Satisfy with Firefox, Safari, Chrome.**
+* **Use bonjourname as the server address, for example: http://y500.local, http://macbook.local:9002...**
+* **print link address and bonjour name of the server in the console**
+
+
 # Installation
 
 #### Podfile
@@ -31,6 +38,22 @@ If use Swift, remember to add `use_frameworks!`
 use_frameworks!
 pod 'YYDebugDatabase'
 ```
+
+#### Carthage
+
+- Cartfile
+
+```
+github "y500/iOSDebugDatabase"
+```
+
+- run `carthage update`
+
+- Add all three `.frameworks` to your target "Embedd Frameworks" Build Phase:
+ 	- `iOSDebugDatabase.framework`
+	- `FMDB.framework`
+	- `GCDWebServers.framework`
+
 
 #### Not build in Release
 
@@ -52,7 +75,7 @@ $ pod install
 import at AppDelegate.m:
 
 ```objc
-#import YYDebugDatabaseManager.h
+#import DebugDatabaseManager.h
 ```
 
 making one line code at `application:didFinishLaunchingWithOptions`:
@@ -93,7 +116,7 @@ for example:
 ```objc
     NSString *resourceDirectory = [[NSBundle mainBundle] resourcePath];
     NSString *databaseDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/database"];
-    NSString *documentDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documnets"];
+    NSString *documentDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     NSString *cacheDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Cache"];
     [[DebugDatabaseManager shared] startServerOnPort:9002 directories:@[resourceDirectory, databaseDirectory, documentDirectory, cacheDirectory]];
 ```
@@ -130,6 +153,15 @@ Important:
 - the host of you link address is the iPhone's net address.
 - If you use Simulator you can use address: http://127.0.0.1:9002.
 - the port must be same as you write in Appdelegate.m
+
+###other more:
+
+you can find the address and bojourname address in the console like below:
+```
+[INFO] DebugDatabaseManager started on port 9002 and reachable at http://192.168.0.67:9002/
+[INFO] DebugDatabaseManager now locally reachable at http://y500.local:9002/
+```
+
 
 ### License
 ```

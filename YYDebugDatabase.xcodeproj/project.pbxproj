@@ -8,6 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		89CC7B5231AD8E77CEC10949 /* libPods-YYDebugDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F79B17EACE993F42581F0F1C /* libPods-YYDebugDatabase.a */; };
+		8A6C34EC1FE5175100C44E61 /* DebugDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E84AE6331F3C4210003A9EB7 /* DebugDatabaseManager.m */; };
+		8A6C34ED1FE5175400C44E61 /* DatabaseUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E84AE6431F3D9F8F003A9EB7 /* DatabaseUtil.m */; };
+		8A6C34EE1FE5175900C44E61 /* NSURL+scheme.m in Sources */ = {isa = PBXBuildFile; fileRef = E84AE63C1F3D8016003A9EB7 /* NSURL+scheme.m */; };
+		8A6C34EF1FE5175C00C44E61 /* NSMutableArray+safe.m in Sources */ = {isa = PBXBuildFile; fileRef = E84AE6481F3EA0DF003A9EB7 /* NSMutableArray+safe.m */; };
+		8A6C34F01FE5175E00C44E61 /* NSMutableDictionary+safe.m in Sources */ = {isa = PBXBuildFile; fileRef = E84AE64A1F3EA0DF003A9EB7 /* NSMutableDictionary+safe.m */; };
+		8A6C34F11FE5176100C44E61 /* NSString+json.m in Sources */ = {isa = PBXBuildFile; fileRef = E84AE64E1F3EA78F003A9EB7 /* NSString+json.m */; };
+		8A6C34F51FE5187700C44E61 /* GCDWebServers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A6C34F31FE5187700C44E61 /* GCDWebServers.framework */; };
+		8A6C34F61FE5187700C44E61 /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A6C34F41FE5187700C44E61 /* FMDB.framework */; };
+		8AE40E021FE51FEF00B5F6CA /* DebugDatabaseManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E84AE6321F3C4210003A9EB7 /* DebugDatabaseManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8AE40E031FE5200100B5F6CA /* DatabaseUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = E84AE6421F3D9F8F003A9EB7 /* DatabaseUtil.h */; };
+		8AE40E041FE5200400B5F6CA /* NSURL+scheme.h in Headers */ = {isa = PBXBuildFile; fileRef = E84AE63B1F3D8016003A9EB7 /* NSURL+scheme.h */; };
+		8AE40E051FE5200700B5F6CA /* NSMutableArray+safe.h in Headers */ = {isa = PBXBuildFile; fileRef = E84AE6471F3EA0DF003A9EB7 /* NSMutableArray+safe.h */; };
+		8AE40E061FE5200A00B5F6CA /* NSMutableDictionary+safe.h in Headers */ = {isa = PBXBuildFile; fileRef = E84AE6491F3EA0DF003A9EB7 /* NSMutableDictionary+safe.h */; };
+		8AE40E071FE5200C00B5F6CA /* NSString+json.h in Headers */ = {isa = PBXBuildFile; fileRef = E84AE64D1F3EA78F003A9EB7 /* NSString+json.h */; };
+		8AE40E221FE5243A00B5F6CA /* iOSDebugDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A6C34E11FE516EF00C44E61 /* iOSDebugDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8AE40E231FE5253900B5F6CA /* Web.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E8E069C81F40954500477064 /* Web.bundle */; };
 		E84AE5F01F3ADDE3003A9EB7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E84AE5EF1F3ADDE3003A9EB7 /* main.m */; };
 		E84AE5F31F3ADDE3003A9EB7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E84AE5F21F3ADDE3003A9EB7 /* AppDelegate.m */; };
 		E84AE5F61F3ADDE3003A9EB7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84AE5F51F3ADDE3003A9EB7 /* ViewController.m */; };
@@ -29,6 +45,12 @@
 /* Begin PBXFileReference section */
 		22ADD98E9993641841D67B7F /* Pods-YYDebugDatabase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YYDebugDatabase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YYDebugDatabase/Pods-YYDebugDatabase.debug.xcconfig"; sourceTree = "<group>"; };
 		50D992B943B292D10D75C6C2 /* Pods-YYDebugDatabase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YYDebugDatabase.release.xcconfig"; path = "Pods/Target Support Files/Pods-YYDebugDatabase/Pods-YYDebugDatabase.release.xcconfig"; sourceTree = "<group>"; };
+		8A6C34DF1FE516EF00C44E61 /* iOSDebugDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = iOSDebugDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A6C34E11FE516EF00C44E61 /* iOSDebugDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSDebugDatabase.h; sourceTree = "<group>"; };
+		8A6C34E21FE516EF00C44E61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A6C34F21FE517CF00C44E61 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		8A6C34F31FE5187700C44E61 /* GCDWebServers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GCDWebServers.framework; path = ../../Build/iOS/GCDWebServers.framework; sourceTree = "<group>"; };
+		8A6C34F41FE5187700C44E61 /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FMDB.framework; path = ../../Build/iOS/FMDB.framework; sourceTree = "<group>"; };
 		E84AE5EB1F3ADDE3003A9EB7 /* YYDebugDatabase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YYDebugDatabase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E84AE5EF1F3ADDE3003A9EB7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E84AE5F11F3ADDE3003A9EB7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -59,6 +81,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8A6C34DB1FE516EF00C44E61 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A6C34F51FE5187700C44E61 /* GCDWebServers.framework in Frameworks */,
+				8A6C34F61FE5187700C44E61 /* FMDB.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E84AE5E81F3ADDE3003A9EB7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -74,6 +105,8 @@
 		6EF7385C082F21BADF8F3BAF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8A6C34F41FE5187700C44E61 /* FMDB.framework */,
+				8A6C34F31FE5187700C44E61 /* GCDWebServers.framework */,
 				E84AE6451F3DA3AA003A9EB7 /* libsqlite3.0.tbd */,
 				F79B17EACE993F42581F0F1C /* libPods-YYDebugDatabase.a */,
 			);
@@ -92,6 +125,7 @@
 		E84AE5E21F3ADDE3003A9EB7 = {
 			isa = PBXGroup;
 			children = (
+				8A6C34F21FE517CF00C44E61 /* Cartfile */,
 				E84AE6091F3C39CD003A9EB7 /* DebugDatabase */,
 				E84AE5ED1F3ADDE3003A9EB7 /* YYDebugDatabase */,
 				E84AE5EC1F3ADDE3003A9EB7 /* Products */,
@@ -104,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				E84AE5EB1F3ADDE3003A9EB7 /* YYDebugDatabase.app */,
+				8A6C34DF1FE516EF00C44E61 /* iOSDebugDatabase.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -137,6 +172,8 @@
 		E84AE6091F3C39CD003A9EB7 /* DebugDatabase */ = {
 			isa = PBXGroup;
 			children = (
+				8A6C34E11FE516EF00C44E61 /* iOSDebugDatabase.h */,
+				8A6C34E21FE516EF00C44E61 /* Info.plist */,
 				E8E069C81F40954500477064 /* Web.bundle */,
 				E84AE6321F3C4210003A9EB7 /* DebugDatabaseManager.h */,
 				E84AE6331F3C4210003A9EB7 /* DebugDatabaseManager.m */,
@@ -156,7 +193,42 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		8A6C34DC1FE516EF00C44E61 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8AE40E021FE51FEF00B5F6CA /* DebugDatabaseManager.h in Headers */,
+				8AE40E031FE5200100B5F6CA /* DatabaseUtil.h in Headers */,
+				8AE40E041FE5200400B5F6CA /* NSURL+scheme.h in Headers */,
+				8AE40E051FE5200700B5F6CA /* NSMutableArray+safe.h in Headers */,
+				8AE40E221FE5243A00B5F6CA /* iOSDebugDatabase.h in Headers */,
+				8AE40E071FE5200C00B5F6CA /* NSString+json.h in Headers */,
+				8AE40E061FE5200A00B5F6CA /* NSMutableDictionary+safe.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		8A6C34DE1FE516EF00C44E61 /* iOSDebugDatabase-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8A6C34EA1FE516EF00C44E61 /* Build configuration list for PBXNativeTarget "iOSDebugDatabase-iOS" */;
+			buildPhases = (
+				8A6C34DA1FE516EF00C44E61 /* Sources */,
+				8A6C34DB1FE516EF00C44E61 /* Frameworks */,
+				8A6C34DC1FE516EF00C44E61 /* Headers */,
+				8A6C34DD1FE516EF00C44E61 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "iOSDebugDatabase-iOS";
+			productName = iOSDebugDatabase;
+			productReference = 8A6C34DF1FE516EF00C44E61 /* iOSDebugDatabase.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		E84AE5EA1F3ADDE3003A9EB7 /* YYDebugDatabase */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E84AE6021F3ADDE3003A9EB7 /* Build configuration list for PBXNativeTarget "YYDebugDatabase" */;
@@ -186,6 +258,11 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = wentian;
 				TargetAttributes = {
+					8A6C34DE1FE516EF00C44E61 = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = 6M5WCVL2GQ;
+						ProvisioningStyle = Automatic;
+					};
 					E84AE5EA1F3ADDE3003A9EB7 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 6M5WCVL2GQ;
@@ -207,11 +284,20 @@
 			projectRoot = "";
 			targets = (
 				E84AE5EA1F3ADDE3003A9EB7 /* YYDebugDatabase */,
+				8A6C34DE1FE516EF00C44E61 /* iOSDebugDatabase-iOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8A6C34DD1FE516EF00C44E61 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8AE40E231FE5253900B5F6CA /* Web.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E84AE5E91F3ADDE3003A9EB7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -282,6 +368,19 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8A6C34DA1FE516EF00C44E61 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A6C34EF1FE5175C00C44E61 /* NSMutableArray+safe.m in Sources */,
+				8A6C34F11FE5176100C44E61 /* NSString+json.m in Sources */,
+				8A6C34EE1FE5175900C44E61 /* NSURL+scheme.m in Sources */,
+				8A6C34ED1FE5175400C44E61 /* DatabaseUtil.m in Sources */,
+				8A6C34EC1FE5175100C44E61 /* DebugDatabaseManager.m in Sources */,
+				8A6C34F01FE5175E00C44E61 /* NSMutableDictionary+safe.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E84AE5E71F3ADDE3003A9EB7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -320,6 +419,81 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		8A6C34E81FE516EF00C44E61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 6M5WCVL2GQ;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = DebugDatabase/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.KingOrient.PropertyLift.iOSDebugDatabase;
+				PRODUCT_NAME = iOSDebugDatabase;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8A6C34E91FE516EF00C44E61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 6M5WCVL2GQ;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = DebugDatabase/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.KingOrient.PropertyLift.iOSDebugDatabase;
+				PRODUCT_NAME = iOSDebugDatabase;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		E84AE6001F3ADDE3003A9EB7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -415,6 +589,7 @@
 			baseConfigurationReference = 22ADD98E9993641841D67B7F /* Pods-YYDebugDatabase.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 6M5WCVL2GQ;
 				INFOPLIST_FILE = YYDebugDatabase/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -428,6 +603,7 @@
 			baseConfigurationReference = 50D992B943B292D10D75C6C2 /* Pods-YYDebugDatabase.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 6M5WCVL2GQ;
 				INFOPLIST_FILE = YYDebugDatabase/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -439,6 +615,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8A6C34EA1FE516EF00C44E61 /* Build configuration list for PBXNativeTarget "iOSDebugDatabase-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A6C34E81FE516EF00C44E61 /* Debug */,
+				8A6C34E91FE516EF00C44E61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E84AE5E61F3ADDE3003A9EB7 /* Build configuration list for PBXProject "YYDebugDatabase" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

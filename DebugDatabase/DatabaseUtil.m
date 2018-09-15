@@ -8,7 +8,14 @@
 
 #import "DatabaseUtil.h"
 #import <sqlite3.h>
+
+#ifdef COCOAPODS
 #import "FMDB.h"
+#else
+#import <FMDB/FMDB.h>
+#endif
+
+
 
 @interface DatabaseUtil ()
 

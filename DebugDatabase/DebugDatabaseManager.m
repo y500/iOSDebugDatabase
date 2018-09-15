@@ -10,8 +10,14 @@
 #import "NSURL+scheme.h"
 #import "DatabaseUtil.h"
 #import "NSString+json.h"
-#import "GCDWebServerRequest.h"
-#import "GCDWebServerDataResponse.h"
+#ifdef COCOAPODS
+#import <GCDWebServer/GCDWebServerRequest.h>
+#import <GCDWebServer/GCDWebServerDataResponse.h>
+#else
+#import <GCDWebServers/GCDWebServerRequest.h>
+#import <GCDWebServers/GCDWebServerDataResponse.h>
+#endif
+
 
 @interface DebugDatabaseManager ()<GCDWebServerDelegate>
 
