@@ -99,12 +99,16 @@
     
     NSMutableArray *tableInfoResult = [NSMutableArray array];
     
+    NSMutableArray *columnKeys = [NSMutableArray arrayWithCapacity:10];
+    
     while ([infors next]) {
         NSMutableDictionary *info = [NSMutableDictionary dictionary];
         [info safe_setObject:@([infors boolForColumn:@"pk"]) forKey:@"isPrimary"];
-        [info safe_setObject:[infors stringForColumn:@"name"]?:@"" forKey:@"title"];
+        [info safe_setObject:[NSString stringWithFormat:@"%@[%@]", [infors stringForColumn:@"name"]?:@"", [infors stringForColumn:@"type"]]  forKey:@"title"];
         [info safe_setObject:[infors stringForColumn:@"type"] forKey:@"dataType"];
         [tableInfoResult safe_addObject:info];
+        
+        [columnKeys addObject:[infors stringForColumn:@"name"]?:@""];
     }
     [tableData safe_setObject:tableInfoResult forKey:@"tableInfos"];
     
@@ -122,28 +126,30 @@
         
         for ( int i = 0; i < tableInfoResult.count; i++) {
             NSMutableDictionary *columnData = [NSMutableDictionary dictionaryWithCapacity:10];
-            NSString *columName = [[tableInfoResult objectAtIndex:i] objectForKey:@"title"];
+            NSString *columName = [columnKeys objectAtIndex:i];
             NSString *type = [[tableInfoResult objectAtIndex:i] objectForKey:@"dataType"];
             
             if ([[type lowercaseString] isEqualToString:@"integer"]) {
                 [columnData safe_setObject:@"integer" forKey:@"dataType"];
-                [columnData safe_setObject:@([rs intForColumn:columName]) forKey:@"value"];
             }else if ([[type lowercaseString] isEqualToString:@"real"]) {
                 [columnData safe_setObject:@"float" forKey:@"dataType"];
-                [columnData safe_setObject:@([rs doubleForColumn:columName]) forKey:@"value"];
             }else if ([[type lowercaseString] isEqualToString:@"text"]) {
                 [columnData safe_setObject:@"text" forKey:@"dataType"];
-                [columnData safe_setObject:[rs stringForColumn:columName]?:@"" forKey:@"value"];
             }else if ([[type lowercaseString] isEqualToString:@"blob"]) {
                 [columnData safe_setObject:@"blob" forKey:@"dataType"];
-                [columnData safe_setObject:@"blob" forKey:@"value"];
             }else if ([[type lowercaseString] isEqualToString:@"null"]) {
                 [columnData safe_setObject:@"null" forKey:@"dataType"];
-                [columnData safe_setObject:[NSNull null] forKey:@"value"];
             }else {
                 [columnData safe_setObject:@"text" forKey:@"dataType"];
-                [columnData safe_setObject:[rs stringForColumn:columName] forKey:@"value"];
             }
+            
+            if ([[type lowercaseString] isEqualToString:@"blob"]) {
+                [columnData safe_setObject:@"blob" forKey:@"value"];
+            } else {
+                [columnData safe_setObject:[rs objectForColumn:columName]?:[NSNull null] forKey:@"value"];
+            }
+            
+            
             
             [row safe_addObject:columnData];
         }
