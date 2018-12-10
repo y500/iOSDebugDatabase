@@ -152,7 +152,16 @@
             
             if ([[type lowercaseString] isEqualToString:@"blob"]) {
                 [columnData safe_setObject:@"blob" forKey:@"value"];
-            } else {
+            }else if ([[type lowercaseString] isEqualToString:@"guid"]){
+                
+                const unsigned char *bytes = (const unsigned char *)[[rs objectForColumn:columName] bytes];
+                NSMutableString *hex = [NSMutableString new];
+                for (NSInteger i = 0; i < [[rs objectForColumn:columName] length]; i++) {
+                    [hex appendFormat:@"%02x", bytes[i]];
+                }
+                
+                [columnData safe_setObject:hex?:[NSNull null] forKey:@"value"];
+            }else {
                 [columnData safe_setObject:[rs objectForColumn:columName]?:[NSNull null] forKey:@"value"];
             }
             
