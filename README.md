@@ -133,19 +133,19 @@ That’s all(you can look at the Demo for details), just start the application :
 
 Now open the provided link in your browser, and you will see like this:
 
-![](http://noti.qiniudn.com/693916a699a78a1c01da2d93126c0ed71.png)
+![](http://notiimg.y500.me/693916a699a78a1c01da2d93126c0ed71.png)
 
 query:
 
-![](http://noti.qiniudn.com/21dd97948e85cf928751ef6d2b7d92662.png)
+![](http://notiimg.y500.me/21dd97948e85cf928751ef6d2b7d92662.png)
 
 edit:
 
-![](http://noti.qiniudn.com/b081fa0e1842a05c23321d08f7cec6683.png)
+![](http://notiimg.y500.me/b081fa0e1842a05c23321d08f7cec6683.png)
 
 delete:
 
-![](http://noti.qiniudn.com/d0c7cb82ae6aadf790dc57da6c6e888f4.png)
+![](http://notiimg.y500.me/d0c7cb82ae6aadf790dc57da6c6e888f4.png)
 
 
 Important:
