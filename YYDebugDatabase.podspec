@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'YYDebugDatabase'
-  s.version          = '2.0.2'
-  s.summary          = 'easy way to process splite db'
+  s.version          = '2.0.3'
+  s.summary          = 'easy way to process splite database'
 
   s.homepage         = 'https://y500.me'
   s.license          = { :type => 'None', :file => 'LICENSE' }
