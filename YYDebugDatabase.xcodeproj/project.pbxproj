@@ -24,6 +24,7 @@
 		8AE40E071FE5200C00B5F6CA /* NSString+json.h in Headers */ = {isa = PBXBuildFile; fileRef = E84AE64D1F3EA78F003A9EB7 /* NSString+json.h */; };
 		8AE40E221FE5243A00B5F6CA /* iOSDebugDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A6C34E11FE516EF00C44E61 /* iOSDebugDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8AE40E231FE5253900B5F6CA /* Web.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E8E069C81F40954500477064 /* Web.bundle */; };
+		E834DAAC22DC5A6400FAC2C1 /* YYDebugDatabase.podspec in Resources */ = {isa = PBXBuildFile; fileRef = E834DAAB22DC5A6400FAC2C1 /* YYDebugDatabase.podspec */; };
 		E84AE5F01F3ADDE3003A9EB7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E84AE5EF1F3ADDE3003A9EB7 /* main.m */; };
 		E84AE5F31F3ADDE3003A9EB7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E84AE5F21F3ADDE3003A9EB7 /* AppDelegate.m */; };
 		E84AE5F61F3ADDE3003A9EB7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84AE5F51F3ADDE3003A9EB7 /* ViewController.m */; };
@@ -51,6 +52,7 @@
 		8A6C34F21FE517CF00C44E61 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		8A6C34F31FE5187700C44E61 /* GCDWebServers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GCDWebServers.framework; path = ../../Build/iOS/GCDWebServers.framework; sourceTree = "<group>"; };
 		8A6C34F41FE5187700C44E61 /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FMDB.framework; path = ../../Build/iOS/FMDB.framework; sourceTree = "<group>"; };
+		E834DAAB22DC5A6400FAC2C1 /* YYDebugDatabase.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = YYDebugDatabase.podspec; sourceTree = "<group>"; };
 		E84AE5EB1F3ADDE3003A9EB7 /* YYDebugDatabase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YYDebugDatabase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E84AE5EF1F3ADDE3003A9EB7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E84AE5F11F3ADDE3003A9EB7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		E84AE5E21F3ADDE3003A9EB7 = {
 			isa = PBXGroup;
 			children = (
+				E834DAAB22DC5A6400FAC2C1 /* YYDebugDatabase.podspec */,
 				8A6C34F21FE517CF00C44E61 /* Cartfile */,
 				E84AE6091F3C39CD003A9EB7 /* DebugDatabase */,
 				E84AE5ED1F3ADDE3003A9EB7 /* YYDebugDatabase */,
@@ -307,6 +310,7 @@
 				E84AE6411F3D9BEF003A9EB7 /* Contact.db in Resources */,
 				E84AE5FE1F3ADDE3003A9EB7 /* LaunchScreen.storyboard in Resources */,
 				E84AE5FB1F3ADDE3003A9EB7 /* Assets.xcassets in Resources */,
+				E834DAAC22DC5A6400FAC2C1 /* YYDebugDatabase.podspec in Resources */,
 				E84AE5F91F3ADDE3003A9EB7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'YYDebugDatabase'
-  s.version          = '2.0.3'
+  s.version          = '2.0.4'
   s.summary          = 'easy way to process splite database'
 
   s.homepage         = 'https://y500.me'
