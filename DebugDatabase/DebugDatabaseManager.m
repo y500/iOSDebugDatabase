@@ -227,20 +227,33 @@
     NSMutableDictionary *paths = @{}.mutableCopy;
     
     for (NSString *directory in directories) {
-        NSArray *dirList = [[[NSFileManager defaultManager] subpathsAtPath:directory] pathsMatchingExtensions:@[@"sqlite",@"SQLITE",@"db",@"DB"]];
+        NSArray *dirList = [[[NSFileManager defaultManager] subpathsAtPath:directory] pathsMatchingExtensions:[self databaseSuffixs]];
         
         for (NSString *subPath in dirList) {
-            if ([subPath hasSuffix:@"sqlite"] || [subPath hasSuffix:@"SQLITE"]|| [subPath hasSuffix:@"db"]|| [subPath hasSuffix:@"DB"]) {
-                [paths setObject:[directory stringByAppendingPathComponent:subPath] forKey:subPath.lastPathComponent];
+            if ([self checkDatabaseFile:subPath]) {
+                 [paths setObject:[directory stringByAppendingPathComponent:subPath] forKey:subPath.lastPathComponent];
             }
         }
         
-        if ([directory hasSuffix:@"sqlite"] || [directory hasSuffix:@"SQLITE"]|| [directory hasSuffix:@"db"]|| [directory hasSuffix:@"DB"]) {
+        if ([self checkDatabaseFile:directory]) {
             [paths setObject:directory forKey:directory.lastPathComponent];
         }
     }
     
     return paths;
+}
+
+- (BOOL)checkDatabaseFile:(NSString*)fileName {
+    for (NSString *suffix in [self databaseSuffixs]) {
+        if ([fileName hasSuffix:suffix]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (NSArray*)databaseSuffixs {
+    return @[@"sqlite", @"SQLITE", @"db", @"DB", @"sqlite3", @"SQLITE3"];
 }
 
 - (NSString*)getTableNameFromQuery:(NSString*)query {
