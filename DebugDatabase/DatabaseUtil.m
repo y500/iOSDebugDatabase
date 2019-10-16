@@ -154,15 +154,18 @@
                 [columnData safe_setObject:@"blob" forKey:@"value"];
             }else if ([[type lowercaseString] isEqualToString:@"guid"]){
                 
-                const unsigned char *bytes = (const unsigned char *)[[rs objectForColumn:columName] bytes];
+                
+                id data = [rs respondsToSelector:@selector(objectForColumn:)] ? [rs objectForColumn:columName] : [rs objectForColumnName:columName];
+                const unsigned char *bytes = (const unsigned char *)[data bytes];
                 NSMutableString *hex = [NSMutableString new];
-                for (NSInteger i = 0; i < [[rs objectForColumn:columName] length]; i++) {
+                for (NSInteger i = 0; i < [data length]; i++) {
                     [hex appendFormat:@"%02x", bytes[i]];
                 }
                 
                 [columnData safe_setObject:hex?:[NSNull null] forKey:@"value"];
             }else {
-                [columnData safe_setObject:[rs objectForColumn:columName]?:[NSNull null] forKey:@"value"];
+                id obj = [rs respondsToSelector:@selector(objectForColumn:)] ? [rs objectForColumn:columName] : [rs objectForColumnName:columName];
+                [columnData safe_setObject:obj?:[NSNull null] forKey:@"value"];
             }
             
             
