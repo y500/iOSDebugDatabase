@@ -155,7 +155,7 @@
             }else if ([[type lowercaseString] isEqualToString:@"guid"]){
                 
                 
-                id data = [rs respondsToSelector:@selector(objectForColumn:)] ? [rs objectForColumn:columName] : [rs objectForColumnName:columName];
+                id data = [rs respondsToSelector:@selector(objectForColumn:)] ? [rs performSelector:@selector(objectForColumn:) withObject:columName] : [rs performSelector:@selector(objectForColumnName:) withObject:columName];
                 const unsigned char *bytes = (const unsigned char *)[data bytes];
                 NSMutableString *hex = [NSMutableString new];
                 for (NSInteger i = 0; i < [data length]; i++) {
@@ -164,7 +164,7 @@
                 
                 [columnData safe_setObject:hex?:[NSNull null] forKey:@"value"];
             }else {
-                id obj = [rs respondsToSelector:@selector(objectForColumn:)] ? [rs objectForColumn:columName] : [rs objectForColumnName:columName];
+                id obj = [rs respondsToSelector:@selector(objectForColumn:)] ? [rs performSelector:@selector(objectForColumn:) withObject:columName] : [rs performSelector:@selector(objectForColumnName:) withObject:columName];
                 [columnData safe_setObject:obj?:[NSNull null] forKey:@"value"];
             }
             
