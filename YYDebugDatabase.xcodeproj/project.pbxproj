@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5829F841247D38DE00D5EAD3 /* module2 in Resources */ = {isa = PBXBuildFile; fileRef = 5829F83F247D38DE00D5EAD3 /* module2 */; };
+		5829F842247D38DE00D5EAD3 /* module1 in Resources */ = {isa = PBXBuildFile; fileRef = 5829F840247D38DE00D5EAD3 /* module1 */; };
 		89CC7B5231AD8E77CEC10949 /* libPods-YYDebugDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F79B17EACE993F42581F0F1C /* libPods-YYDebugDatabase.a */; };
 		8A6C34EC1FE5175100C44E61 /* DebugDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E84AE6331F3C4210003A9EB7 /* DebugDatabaseManager.m */; };
 		8A6C34ED1FE5175400C44E61 /* DatabaseUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E84AE6431F3D9F8F003A9EB7 /* DatabaseUtil.m */; };
@@ -46,6 +48,8 @@
 /* Begin PBXFileReference section */
 		22ADD98E9993641841D67B7F /* Pods-YYDebugDatabase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YYDebugDatabase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YYDebugDatabase/Pods-YYDebugDatabase.debug.xcconfig"; sourceTree = "<group>"; };
 		50D992B943B292D10D75C6C2 /* Pods-YYDebugDatabase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YYDebugDatabase.release.xcconfig"; path = "Pods/Target Support Files/Pods-YYDebugDatabase/Pods-YYDebugDatabase.release.xcconfig"; sourceTree = "<group>"; };
+		5829F83F247D38DE00D5EAD3 /* module2 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = module2; sourceTree = "<group>"; };
+		5829F840247D38DE00D5EAD3 /* module1 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = module1; sourceTree = "<group>"; };
 		8A6C34DF1FE516EF00C44E61 /* iOSDebugDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = iOSDebugDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A6C34E11FE516EF00C44E61 /* iOSDebugDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSDebugDatabase.h; sourceTree = "<group>"; };
 		8A6C34E21FE516EF00C44E61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -149,6 +153,8 @@
 		E84AE5ED1F3ADDE3003A9EB7 /* YYDebugDatabase */ = {
 			isa = PBXGroup;
 			children = (
+				5829F840247D38DE00D5EAD3 /* module1 */,
+				5829F83F247D38DE00D5EAD3 /* module2 */,
 				E84AE63E1F3D8843003A9EB7 /* Car.db */,
 				E84AE63F1F3D8843003A9EB7 /* Contact.db */,
 				E84AE5F11F3ADDE3003A9EB7 /* AppDelegate.h */,
@@ -240,8 +246,6 @@
 				E84AE5E71F3ADDE3003A9EB7 /* Sources */,
 				E84AE5E81F3ADDE3003A9EB7 /* Frameworks */,
 				E84AE5E91F3ADDE3003A9EB7 /* Resources */,
-				9FB2B373BADC92DF69E0334D /* [CP] Embed Pods Frameworks */,
-				8B25CAB7D4215B4952552A3B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -278,6 +282,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -308,49 +313,18 @@
 				E8E069C91F40954500477064 /* Web.bundle in Resources */,
 				E84AE6401F3D9BEF003A9EB7 /* Car.db in Resources */,
 				E84AE6411F3D9BEF003A9EB7 /* Contact.db in Resources */,
+				5829F842247D38DE00D5EAD3 /* module1 in Resources */,
 				E84AE5FE1F3ADDE3003A9EB7 /* LaunchScreen.storyboard in Resources */,
 				E84AE5FB1F3ADDE3003A9EB7 /* Assets.xcassets in Resources */,
 				E834DAAC22DC5A6400FAC2C1 /* YYDebugDatabase.podspec in Resources */,
 				E84AE5F91F3ADDE3003A9EB7 /* Main.storyboard in Resources */,
+				5829F841247D38DE00D5EAD3 /* module2 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8B25CAB7D4215B4952552A3B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-YYDebugDatabase/Pods-YYDebugDatabase-resources.sh",
-				"${PODS_ROOT}/GCDWebServer/GCDWebUploader/GCDWebUploader.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YYDebugDatabase/Pods-YYDebugDatabase-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9FB2B373BADC92DF69E0334D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YYDebugDatabase/Pods-YYDebugDatabase-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		AC614CD6DFA5E640A919CE47 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

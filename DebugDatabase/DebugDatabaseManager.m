@@ -227,24 +227,51 @@
     NSMutableDictionary *paths = @{}.mutableCopy;
     
     for (NSString *directory in directories) {
-        NSArray *dirList = [[[NSFileManager defaultManager] subpathsAtPath:directory] pathsMatchingExtensions:[self databaseSuffixs]];
+        NSArray *dirList = [[[NSFileManager defaultManager] subpathsAtPath:directory] pathsMatchingExtensions:[self supportedDatabaseSuffixs]];
         
         for (NSString *subPath in dirList) {
             if ([self checkDatabaseFile:subPath]) {
-                 [paths setObject:[directory stringByAppendingPathComponent:subPath] forKey:subPath.lastPathComponent];
+//                 [paths setObject:[directory stringByAppendingPathComponent:subPath] forKey:subPath.lastPathComponent];
+                
+                // added by seven
+                [self addToDbQueryPathesSupportDuplicatedFilename:paths
+                                                           object:[directory stringByAppendingPathComponent:subPath]
+                                                              key:subPath.lastPathComponent];
             }
         }
         
         if ([self checkDatabaseFile:directory]) {
-            [paths setObject:directory forKey:directory.lastPathComponent];
+//            [paths setObject:directory forKey:directory.lastPathComponent];
+            
+            // added by seven
+            [self addToDbQueryPathesSupportDuplicatedFilename:paths
+                                                       object:directory
+                                                          key:directory.lastPathComponent];
         }
     }
     
     return paths;
 }
 
+// added by seven
+- (void)addToDbQueryPathesSupportDuplicatedFilename:(NSMutableDictionary *)paths object:(NSString *)dbPath key:(NSString *)dbKeyName {
+    // Key exists, appending the last directory path component
+    if ([paths objectForKey:dbKeyName]) {
+        NSString *dbDir = [dbPath stringByDeletingLastPathComponent];
+        NSArray *dbDirPathComponents = [dbDir componentsSeparatedByString:@"/"];
+
+        NSString *lastPathComponent = [dbDirPathComponents lastObject];
+        
+        if (lastPathComponent && lastPathComponent.length) {
+            dbKeyName = [NSString stringWithFormat:@"%@/%@", lastPathComponent, dbKeyName];
+        }
+    }
+    
+    [paths setObject:dbPath forKey:dbKeyName];
+}
+
 - (BOOL)checkDatabaseFile:(NSString*)fileName {
-    for (NSString *suffix in [self databaseSuffixs]) {
+    for (NSString *suffix in [self supportedDatabaseSuffixs]) {
         if ([fileName hasSuffix:suffix]) {
             return YES;
         }
@@ -252,7 +279,7 @@
     return NO;
 }
 
-- (NSArray*)databaseSuffixs {
+- (NSArray*)supportedDatabaseSuffixs {
     return @[@"sqlite", @"SQLITE", @"db", @"DB", @"sqlite3", @"SQLITE3"];
 }
 
