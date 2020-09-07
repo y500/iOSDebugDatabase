@@ -111,7 +111,8 @@
     while ([infors next]) {
         NSMutableDictionary *info = [NSMutableDictionary dictionary];
         [info safe_setObject:@([infors boolForColumn:@"pk"]) forKey:@"isPrimary"];
-        [info safe_setObject:[NSString stringWithFormat:@"%@[%@]", [infors stringForColumn:@"name"]?:@"", [infors stringForColumn:@"type"]]  forKey:@"title"];
+//        [info safe_setObject:[NSString stringWithFormat:@"%@[%@]", [infors stringForColumn:@"name"]?:@"", [infors stringForColumn:@"type"]]  forKey:@"titleDisplay"];
+        [info safe_setObject:[NSString stringWithFormat:@"%@", [infors stringForColumn:@"name"]?:@""]  forKey:@"title"];
         [info safe_setObject:[infors stringForColumn:@"type"] forKey:@"dataType"];
         [tableInfoResult safe_addObject:info];
         
