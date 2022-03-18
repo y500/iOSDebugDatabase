@@ -44,6 +44,16 @@
         
         [self addGETHandlerForBasePath:@"/" directoryPath:[bundle resourcePath] indexFilename:@"index.html" cacheAge:0 allowRangeRequests:YES];
         
+        // home page
+        [self addHandlerForMethod:@"GET"
+                             path:@"/"
+                     requestClass:[GCDWebServerRequest class]
+                     processBlock:^GCDWebServerResponse*(GCDWebServerRequest* request) {
+
+            NSString *indexPath = [bundle pathForResource:@"index" ofType:@"html"];
+            return [GCDWebServerDataResponse responseWithHTMLTemplate:indexPath variables:@{}];
+        }];
+        
         [self setupAdvanceRoutes];
     }
     return self;
